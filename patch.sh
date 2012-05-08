@@ -1,3 +1,11 @@
+#!/bin/bash
+#
+# Build tools to automatically apply patches to my
+# CM9 folder on the epic build server.
+#
+# Based on EpicCM/epictools
+#
+
 set -e
 
 repo abandon auto
