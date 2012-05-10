@@ -1,0 +1,21 @@
+assert(getprop("ro.product.device") == "vibrant" || getprop("ro.build.product") == "vibrant" || getprop("ro.product.board") == "vibrant" ||
+       getprop("ro.product.device") == "vibrantmtd" || getprop("ro.build.product") == "vibrantmtd" || getprop("ro.product.board") == "vibrantmtd" ||
+       getprop("ro.product.device") == "SGH-T959" || getprop("ro.build.product") == "SGH-T959" || getprop("ro.product.board") == "SGH-T959");
+ui_print("Flashing kernel...");
+package_extract_file("busybox", "/tmp/busybox");
+set_perm(0, 0, 0777, "/tmp/busybox");
+package_extract_file("flash_image", "/tmp/flash_image");
+set_perm(0, 0, 0777, "/tmp/flash_image");
+package_extract_file("erase_image", "/tmp/erase_image");
+set_perm(0, 0, 0777, "/tmp/erase_image");
+package_extract_file("bml_over_mtd", "/tmp/bml_over_mtd");
+set_perm(0, 0, 0777, "/tmp/bml_over_mtd");
+package_extract_file("bml_over_mtd.sh", "/tmp/bml_over_mtd.sh");
+set_perm(0, 0, 0777, "/tmp/bml_over_mtd.sh");
+package_extract_file("boot.img", "/tmp/boot.img");
+assert(run_program("/tmp/erase_image", "boot"));
+assert(package_extract_file("boot.img", "/tmp/boot.img"),
+       run_program("/tmp/bml_over_mtd.sh", "boot", "72", "reservoir", "2004", "/tmp/boot.img"),
+       delete("/tmp/boot.img"));
+show_progress(0.100000, 0);
+unmount("/system");
