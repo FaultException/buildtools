@@ -43,7 +43,7 @@ if [ -e $BUILD_OUT/boot.img ]; then
     echo "${CYAN}Cleaning up...${RESET}"
     rm $BUILD_OUT/boot.img
     rm -rf $BUILD_OUT/obj/KERNEL_OBJ
-    rm -rf $BUILD_OUT/obj/ramdisk
+    rm -rf $BUILD_OUT/ramdisk*
     rm $BUILD_OUT/system/lib/modules/*
 fi
 
