@@ -55,6 +55,10 @@ fi
 echo "${GREEN}Build succeeded!${RESET}"
 
 cp $BUILD_OUT/boot.img $BKP_TMP/
+
+if [ ! -d $BKP_TMP/system/lib/modules ]; then
+    mkdir -p $BKP_TMP/system/lib/modules
+fi
 cp $BUILD_OUT/system/lib/modules/* $BKP_TMP/system/lib/modules/
 
 cd $BKP_TMP
