@@ -18,8 +18,8 @@ BKP_OUT=`readlink -f $BT_ROOT/out`
 BKP_ZIP=tmp-kernel-`date +%Y-%m-%d`.zip
 DEVICE=$1
 if [ ! -z "$2" ]; then
-    BKP_OUT=$2.zip
-    echo "${BLUE}Package will be named $BKP_OUT${RESET}"
+    BKP_ZIP=$2.zip
+    echo "${BLUE}Package will be named $BKP_ZIP${RESET}"
     echo
 fi
 
