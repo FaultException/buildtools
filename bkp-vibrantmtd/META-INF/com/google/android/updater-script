@@ -13,9 +13,11 @@ show_progress(0.25, 2);
 assert(run_program("/tmp/erase_image", "boot"));
 show_progress(0.25, 2);
 ui_print("Flashing boot image...");
-assert(package_extract_file("boot.img", "/dev/block/platform/omap/omap_hsmmc.0/by-name/boot"));
+assert(package_extract_file("boot.img", "/tmp/boot.img"),
+       run_program("/tmp/bml_over_mtd.sh", "boot", "72", "reservoir", "2004", "/tmp/boot.img"),
+       delete("/tmp/boot.img"));
 show_progress(0.25, 2);
-mount("ext4", "EMMC", "/dev/block/platform/omap/omap_hsmmc.0/by-name/system", "/system");
+mount("ext4", "EMMC", "/dev/block/mmcblk0p2", "/system");
 ui_print("Unpacking /system...");
 package_extract_dir("system", "/system");
 show_progress(0.25, 2);

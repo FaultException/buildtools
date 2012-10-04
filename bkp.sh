@@ -14,6 +14,7 @@ CYAN=$(tput setaf 6)
 ROOT=`pwd`
 BT_ROOT=`readlink -f buildtools`
 BKP_TMP=`readlink -f $BT_ROOT/bkp-tmp`
+BKP_COMMON=`readlink -f $BT_ROOT/bkp-common`
 BKP_OUT=`readlink -f $BT_ROOT/out`
 DEVICE=$1
 if [ ! -z "$2" ]; then
@@ -32,6 +33,13 @@ fi
 
 if [ ! -n "$DEVICE" ]; then
     DEVICE=vibrantmtd
+fi
+
+BKP_DEVICE=`readlink -f $BT_ROOT/bkp-${DEVICE}`
+
+if [ ! -e $BKP_DEVICE ]; then
+    echo "${RED}Device not supported!${RESET}"
+    exit 1
 fi
 
 BKP_ZIP_BASE=tmp_kernel_${DEVICE}_
@@ -59,6 +67,10 @@ if [ ! -e $BUILD_OUT/boot.img ]; then
 fi
 
 echo "${GREEN}Build succeeded!${RESET}"
+
+rm -rf $BKP_TMP
+cp -r $BKP_COMMON $BKP_TMP
+cp -r $BKP_DEVICE/* $BKP_TMP
 
 cp $BUILD_OUT/boot.img $BKP_TMP/
 
