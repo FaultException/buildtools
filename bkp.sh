@@ -15,8 +15,6 @@ ROOT=`pwd`
 BT_ROOT=`readlink -f buildtools`
 BKP_TMP=`readlink -f $BT_ROOT/bkp-tmp`
 BKP_OUT=`readlink -f $BT_ROOT/out`
-BKP_ZIP_BASE=tmp_kernel_maguro_
-BKP_ZIP=$BKP_ZIP_BASE`date +%Y-%m-%d`.zip
 DEVICE=$1
 if [ ! -z "$2" ]; then
     BKP_ZIP=$2.zip
@@ -35,6 +33,10 @@ fi
 if [ ! -n "$DEVICE" ]; then
     DEVICE=vibrantmtd
 fi
+
+BKP_ZIP_BASE=tmp_kernel_${DEVICE}_
+BKP_ZIP=$BKP_ZIP_BASE`date +%Y-%m-%d`.zip
+
 BUILD_OUT=out/target/product/$DEVICE
 
 . build/envsetup.sh
