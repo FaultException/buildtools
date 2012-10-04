@@ -43,10 +43,10 @@ BUILD_OUT=out/target/product/$DEVICE
 breakfast cm_${DEVICE}-userdebug
 
 echo "${CYAN}Cleaning up...${RESET}"
-rm $BUILD_OUT/boot.img
+rm -f $BUILD_OUT/boot.img
 rm -rf $BUILD_OUT/obj/KERNEL_OBJ
 rm -rf $BUILD_OUT/ramdisk*
-rm $BUILD_OUT/system/lib/modules/*
+rm -f $BUILD_OUT/system/lib/modules/*
 
 if ! mka $BUILD_OUT/boot.img; then
     echo "${RED}Build failed! Please correct the errors above.${RESET}"
