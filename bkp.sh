@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Build a kernel flashable package (from CM9).
+# Build a kernel flashable package (from CM10).
 #
 
 # STATIC COLORS
@@ -24,7 +24,7 @@ if [ ! -z "$2" ]; then
 fi
 
 if [ ! -d "buildtools" ]; then
-    echo "buildtools must be placed inside of the CM9 root folder,"
+    echo "buildtools must be placed inside of the CM10 root folder,"
     echo "and ran from there."
     echo
     echo "Example: ./buildtools/bkp.sh <device> <outname>"
