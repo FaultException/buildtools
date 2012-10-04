@@ -15,7 +15,8 @@ ROOT=`pwd`
 BT_ROOT=`readlink -f buildtools`
 BKP_TMP=`readlink -f $BT_ROOT/bkp-tmp`
 BKP_OUT=`readlink -f $BT_ROOT/out`
-BKP_ZIP=tmp-kernel-`date +%Y-%m-%d`.zip
+BKP_ZIP_BASE=tmp_kernel_maguro_
+BKP_ZIP=$BKP_ZIP_BASE`date +%Y-%m-%d`.zip
 DEVICE=$1
 if [ ! -z "$2" ]; then
     BKP_ZIP=$2.zip
@@ -39,13 +40,11 @@ BUILD_OUT=out/target/product/$DEVICE
 . build/envsetup.sh
 breakfast cm_${DEVICE}-userdebug
 
-if [ -e $BUILD_OUT/boot.img ]; then
-    echo "${CYAN}Cleaning up...${RESET}"
-    rm $BUILD_OUT/boot.img
-    rm -rf $BUILD_OUT/obj/KERNEL_OBJ
-    rm -rf $BUILD_OUT/ramdisk*
-    rm $BUILD_OUT/system/lib/modules/*
-fi
+echo "${CYAN}Cleaning up...${RESET}"
+rm $BUILD_OUT/boot.img
+rm -rf $BUILD_OUT/obj/KERNEL_OBJ
+rm -rf $BUILD_OUT/ramdisk*
+rm $BUILD_OUT/system/lib/modules/*
 
 mka $BUILD_OUT/boot.img
 
@@ -62,6 +61,9 @@ if [ ! -d $BKP_TMP/system/lib/modules ]; then
     mkdir -p $BKP_TMP/system/lib/modules
 fi
 cp $BUILD_OUT/system/lib/modules/* $BKP_TMP/system/lib/modules/
+
+# Flush out previous zips for this device
+rm -rf $BKP_OUT/$BKP_ZIP_BASE*
 
 cd $BKP_TMP
 zip -r $BKP_OUT/$BKP_ZIP .

@@ -1,6 +1,3 @@
-assert(getprop("ro.product.device") == "vibrant" || getprop("ro.build.product") == "vibrant" || getprop("ro.product.board") == "vibrant" ||
-       getprop("ro.product.device") == "vibrantmtd" || getprop("ro.build.product") == "vibrantmtd" || getprop("ro.product.board") == "vibrantmtd" ||
-       getprop("ro.product.device") == "SGH-T959" || getprop("ro.build.product") == "SGH-T959" || getprop("ro.product.board") == "SGH-T959");
 package_extract_file("busybox", "/tmp/busybox");
 set_perm(0, 0, 0777, "/tmp/busybox");
 package_extract_file("flash_image", "/tmp/flash_image");
