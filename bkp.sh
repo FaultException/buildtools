@@ -46,10 +46,13 @@ rm -rf $BUILD_OUT/obj/KERNEL_OBJ
 rm -rf $BUILD_OUT/ramdisk*
 rm $BUILD_OUT/system/lib/modules/*
 
-mka $BUILD_OUT/boot.img
+if ! mka $BUILD_OUT/boot.img; then
+    echo "${RED}Build failed! Please correct the errors above.${RESET}"
+    exit 1
+fi
 
 if [ ! -e $BUILD_OUT/boot.img ]; then
-    echo "${RED}Build failed! Please correct the errors above.${RESET}"
+    echo "${RED}Build succeeded but no build.img was produced!${RESET}"
     exit 1
 fi
 
