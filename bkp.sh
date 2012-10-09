@@ -45,10 +45,10 @@ fi
 BKP_ZIP_BASE=tmp_kernel_${DEVICE}_
 BKP_ZIP=$BKP_ZIP_BASE`date +%Y-%m-%d`.zip
 
-BUILD_OUT=out/target/product/$DEVICE
-
 . build/envsetup.sh
 breakfast cm_${DEVICE}-userdebug
+
+BUILD_OUT=$ANDROID_PRODUCT_OUT
 
 echo "${CYAN}Cleaning up...${RESET}"
 rm -f $BUILD_OUT/boot.img
