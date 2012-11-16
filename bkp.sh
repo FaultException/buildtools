@@ -46,7 +46,7 @@ BKP_ZIP_BASE=tmp_kernel_${DEVICE}_
 BKP_ZIP=$BKP_ZIP_BASE`date +%Y-%m-%d`.zip
 
 . build/envsetup.sh
-breakfast cm_${DEVICE}-userdebug
+breakfast ${DEVICE}
 
 BUILD_OUT=$ANDROID_PRODUCT_OUT
 
