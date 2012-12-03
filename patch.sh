@@ -6,8 +6,6 @@
 # Based on EpicCM/epictools
 #
 
-set -e
-
 repo abandon auto
 
 # Patches
@@ -84,4 +82,10 @@ echo "### aries: Wi-Fi adjustments"
 repo start auto kernel/samsung/aries
 pushd kernel/samsung/aries
 git fetch http://review.cyanogenmod.org/CyanogenMod/android_kernel_samsung_aries refs/changes/70/27370/2 && git cherry-pick FETCH_HEAD
+popd
+
+echo "### vibrantmtd: add bluetooth configuration"
+repo start auto device/samsung/vibrantmtd
+pushd device/samsung/vibrantmtd
+git fetch http://review.cyanogenmod.org/CyanogenMod/android_device_samsung_vibrantmtd refs/changes/78/27178/1 && git cherry-pick FETCH_HEAD
 popd
