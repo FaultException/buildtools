@@ -18,74 +18,32 @@ repo abandon auto
 # <cherry-pick-line>
 # cd ../../..
 
-echo "### vold: mount sdcard with UID root"
-repo start auto system/vold
-pushd system/vold
-git fetch http://review.cyanogenmod.org/CyanogenMod/android_system_vold refs/changes/49/26849/2 && git cherry-pick FETCH_HEAD
-popd
-
-echo "### PackageManager: fix app lib migration for device with /datadata"
-repo start auto frameworks/base
-pushd frameworks/base
-git fetch http://review.cyanogenmod.org/CyanogenMod/android_frameworks_base refs/changes/59/26859/3 && git cherry-pick FETCH_HEAD
-popd
-
-echo "### Allow mounting of multiple volumes via mass storage (framework part)"
-repo start auto frameworks/base
-pushd frameworks/base
-git fetch http://review.cyanogenmod.org/CyanogenMod/android_frameworks_base refs/changes/93/26893/4 && git cherry-pick FETCH_HEAD
-popd
-
-echo "### libbt: allow specifying custom config path"
-repo start auto device/common
-pushd device/common
-git fetch http://review.cyanogenmod.org/CyanogenMod/android_device_common refs/changes/53/26953/2 && git cherry-pick FETCH_HEAD
-popd
-
 echo "### aries-common: Jellybean 4.2 bring up"
 repo start auto device/samsung/aries-common
 pushd device/samsung/aries-common
 git fetch http://review.cyanogenmod.org/CyanogenMod/android_device_samsung_aries-common refs/changes/54/26954/5 && git cherry-pick FETCH_HEAD
 popd
 
-echo "### Trebuchet: remove workspace padding"
-repo start auto packages/apps/Trebuchet
-pushd packages/apps/Trebuchet
-git fetch http://review.cyanogenmod.org/CyanogenMod/android_packages_apps_Trebuchet refs/changes/15/27015/1 && git cherry-pick FETCH_HEAD
+echo "### bcmdhd: Enable ad-hoc networks"
+repo start auto kernel/samsung/tuna
+pushd kernel/samsung/tuna
+git fetch http://review.cyanogenmod.org/CyanogenMod/android_kernel_samsung_tuna refs/changes/80/16280/1 && git cherry-pick FETCH_HEAD
 popd
 
-echo "### SamsungExynos3RIL: buffer CAT Proactive Command"
-repo start auto frameworks/opt/telephony
-pushd frameworks/opt/telephony
-git fetch http://review.cyanogenmod.org/CyanogenMod/android_frameworks_opt_telephony refs/changes/36/27336/1 && git cherry-pick FETCH_HEAD
+echo "### vold: mount sdcard with UID root"
+repo start auto system/vold
+pushd system/vold
+git fetch http://review.cyanogenmod.org/CyanogenMod/android_system_vold refs/changes/49/26849/2 && git cherry-pick FETCH_HEAD   
 popd
 
-echo "### Add Samsung STK support (telephony part)"
-repo start auto frameworks/opt/telephony
-pushd frameworks/opt/telephony
-git fetch http://review.cyanogenmod.org/CyanogenMod/android_frameworks_opt_telephony refs/changes/37/27337/1 && git cherry-pick FETCH_HEAD
+echo "### Camera: Allow a device to request the focus modes at build time"
+repo start auto packages/apps/Camera
+pushd packages/apps/Camera
+git fetch http://review.cyanogenmod.org/CyanogenMod/android_packages_apps_Camera refs/changes/96/27996/1 && git cherry-pick FETCH_HEAD
 popd
 
-echo "### Samsung STK: Add USSD support"
-repo start auto frameworks/opt/telephony
-pushd frameworks/opt/telephony
-git fetch http://review.cyanogenmod.org/CyanogenMod/android_frameworks_opt_telephony refs/changes/38/27338/1 && git cherry-pick FETCH_HEAD
-popd
-
-echo "### Samsung STK support (framework/base part)"
-repo start auto frameworks/base
-pushd frameworks/base
-git fetch http://review.cyanogenmod.org/CyanogenMod/android_frameworks_base refs/changes/39/27339/1 && git cherry-pick FETCH_HEAD
-popd
-
-echo "### aries: Wi-Fi adjustments"
-repo start auto kernel/samsung/aries
-pushd kernel/samsung/aries
-git fetch http://review.cyanogenmod.org/CyanogenMod/android_kernel_samsung_aries refs/changes/70/27370/2 && git cherry-pick FETCH_HEAD
-popd
-
-echo "### vibrantmtd: add bluetooth configuration"
-repo start auto device/samsung/vibrantmtd
-pushd device/samsung/vibrantmtd
-git fetch http://review.cyanogenmod.org/CyanogenMod/android_device_samsung_vibrantmtd refs/changes/78/27178/1 && git cherry-pick FETCH_HEAD
+echo "### Clock: fix layout for 320dp devices"
+repo start auto packages/apps/DeskClock
+pushd packages/apps/DeskClock
+git fetch http://review.cyanogenmod.org/CyanogenMod/android_packages_apps_DeskClock refs/changes/01/28001/3 && git cherry-pick FETCH_HEAD
 popd
