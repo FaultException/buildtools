@@ -44,6 +44,6 @@ popd
 
 echo "### Set ANDROID_PROPERTY_WORKSPACE in exec."
 repo start auto system/core
-pushd build
+pushd system/core
 git fetch http://review.cyanogenmod.org/CyanogenMod/android_system_core refs/changes/61/28061/1 && git cherry-pick FETCH_HEAD
 popd
